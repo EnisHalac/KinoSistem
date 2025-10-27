@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista karata 🎫</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<header>
+    <h1 style="text-align:center;">KINO SISTEM 🎥</h1>
+    <nav style="text-align:center; margin-bottom:10px;">
+        <a href="/movies">🎬 Filmovi</a> |
+        <a href="/tickets">🎫 Karte</a>
+    </nav>
+    <hr>
+</header>
+
+<div class="details" style="display:flex; justify-content:center;">
+    <div class="info" style="max-width:700px; width:100%;">
+        <h2 style="text-align:center;">Lista svih prodatih karata</h2>
+
+        <table style="margin:auto;">
+            <tr>
+                <th>Film</th>
+                <th>Ime kupca</th>
+                <th>Sjedalo</th>
+                <th>Cijena (KM)</th>
+            </tr>
+            <!-- sortiranje po nazivu filma -->
+            <tr th:each="ticket : ${tickets}">
+                <td th:text="${ticket.movie.title}"></td>
+                <td th:text="${ticket.customerName}"></td>
+                <td th:text="${ticket.seatNumber}"></td>
+                <td th:text="${ticket.price}"></td>
+            </tr>
+
+        </table>
+
+        <div style="text-align:center; margin-top:15px;">
+            <a href="/movies" class="btn">⬅ Nazad na filmove</a>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <hr>
+    <p style="text-align:center;">© 2025 Kino Sistem</p>
+</footer>
+
+</body>
+</html>
