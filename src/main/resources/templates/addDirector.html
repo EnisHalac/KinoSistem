@@ -1,50 +1,49 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>Dodaj Režisera</title>
-  <link rel="stylesheet" th:href="@{/css/style.css}">
+    <meta charset="UTF-8">
+    <title>Dodaj Režisera</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 
 <header>
-  <h1>KINO SISTEM 🎥</h1>
-  <nav>
-    <a href="/movies">🎬 Filmovi</a> |
-    <a href="/tickets">🎫 Karte</a> |
-    <a href="/directors">➕ Dodaj Režisera</a>
-  </nav>
-  <hr>
+    <div class="navbar">
+        <div class="logo">
+            <a href="/movies"><img src="/css/images/logo.png" alt="Kino Sistem" /></a>
+        </div>
+        <nav>
+            <a href="/movies">🎬 Filmovi</a>
+            <a href="/tickets">🎫 Karte</a>
+            <a href="/directors">➕ Dodaj Režisera</a>
+        </nav>
+    </div>
 </header>
 
-<h2>🎞️ Dodaj novog režisera</h2>
+<main>
+    <h2>🎞️ Dodaj novog režisera</h2>
 
-<form th:action="@{/directors/add}" th:object="${director}" method="post">
-  <label for="name">Ime režisera:</label><br/>
-  <input type="text" th:field="*{name}" placeholder="Unesite ime režisera" required /><br/><br/>
+    <form th:action="@{/directors/add}" th:object="${director}" method="post" class="add-director-form">
+        <label for="name">Ime režisera:</label>
+        <input type="text" th:field="*{name}" placeholder="Unesite ime režisera" required>
 
-  <label for="movie">Poveži s filmom (opcionalno):</label><br/>
-  <select name="movieId">
-    <option value="" selected>-- Ne povezuj sada --</option>
-    <option th:each="movie : ${movies}"
-            th:value="${movie.id}"
-            th:text="${movie.title}">Film</option>
-  </select>
-  <br/><br/>
+        <label for="movie">Poveži s filmom (opcionalno):</label>
+        <select name="movieId">
+            <option value="" selected>-- Ne povezuj sada --</option>
+            <option th:each="movie : ${movies}" th:value="${movie.id}" th:text="${movie.title}">Film</option>
+        </select>
 
-  <button type="submit">Dodaj režisera</button>
-</form>
+        <button type="submit">Dodaj režisera</button>
+    </form>
 
-<hr>
-
-<h3>Postojeći režiseri:</h3>
-<ul>
-  <li th:each="d : ${directors}" th:text="${d.name}">Režiser</li>
-</ul>
+    <h3>Postojeći režiseri:</h3>
+    <ul>
+        <li th:each="d : ${directors}" th:text="${d.name}"></li>
+    </ul>
+</main>
 
 <footer>
-  <hr>
-  <p style="text-align:center;">© 2025 Kino Sistem</p>
+    <p>© 2025 Kino Sistem</p>
 </footer>
 
 </body>
