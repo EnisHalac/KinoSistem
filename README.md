@@ -37,9 +37,11 @@ Omogućava pregled filmova, listu svih prodatih karata, te kupovinu karata direk
 - `/movie/action/{id}` – detalji o filmu i forma za kupovinu karata  
 
 ## Screenshot aplikacije
-
+#### Pregled Filmova
 ![Screenshot Movie List](https://github.com/EnisHalac/KinoSistem/blob/main/src/Screenshot_15.png)  
+#### Pregled Karti
 ![Screenshot Tickets](https://github.com/EnisHalac/KinoSistem/blob/main/src/Screenshot_17.png)  
+#### Detalji o Filmu i Kartama 
 ![Screenshot Movie Details](https://github.com/EnisHalac/KinoSistem/blob/main/src/Screenshot_16.png)  
 
 ---
