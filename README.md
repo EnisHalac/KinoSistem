@@ -44,5 +44,5 @@ Omogućava pregled filmova, listu svih prodatih karata, te kupovinu karata direk
 
 ---
 
-**Napomena:** Aplikacija koristi **in-memory podatke** (`DemoData.java`), tako da nije potrebna baza podataka.  
+**Napomena:** Aplikacija koristi MYSQL bazu podataka, a ucitavanje inicijalnih podataka je moguce putem fajla (`DataLoader.java`), 
 
