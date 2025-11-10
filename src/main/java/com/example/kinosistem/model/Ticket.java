@@ -1,14 +1,22 @@
-
 package com.example.kinosistem.model;
-import com.example.kinosistem.model.Movie;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "tickets")
 public class Ticket {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String seatNumber;
     private double price;
     private String customerName;
 
-    private Movie movie; // veza s filmom
+    @ManyToOne
+    @JoinColumn(name = "movie_id")
+    private Movie movie;
 
     public Ticket() {}
 

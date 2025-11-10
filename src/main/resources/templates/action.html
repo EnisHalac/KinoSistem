@@ -8,70 +8,74 @@
 <body>
 
 <header>
-    <h1>KINO SISTEM 🎥</h1>
-    <nav>
-        <a href="/movies">🎬 Filmovi</a> |
-        <a href="/tickets">🎫 Karte</a>
-    </nav>
-    <hr>
+    <div class="navbar">
+        <div class="logo">
+            <a href="/movies"><img src="/css/images/logo.png" alt="Kino Sistem" /></a>
+        </div>
+        <nav>
+            <a href="/movies">🎬 Filmovi</a>
+            <a href="/tickets">🎫 Karte</a>
+            <a href="/directors">➕ Dodaj Režisera</a>
+        </nav>
+    </div>
 </header>
 
-<div class="details">
-
-    <!-- Lijeva strana: poster filma -->
+<main>
     <div class="movie-detail-grid">
         <div class="poster">
             <img th:src="@{${movie.imageUrl}}" th:alt="${movie.title}" />
         </div>
-
-        <!-- Desna strana: info o filmu -->
         <div class="info">
             <h2 th:text="${movie.title}"></h2>
             <p><b>Žanr:</b> <span th:text="${movie.genre}"></span></p>
             <p><b>Trajanje:</b> <span th:text="${movie.duration}"></span> min</p>
             <p><b>Ocjena:</b> <span th:text="${movie.rating}"></span></p>
 
+            <h3>Režiseri:</h3>
+            <ul>
+                <li th:each="director : ${movie.directors}" th:text="${director.name}"></li>
+            </ul>
+
             <h3>Karte za ovaj film:</h3>
             <table>
-                <tr>
-                    <th>Ime kupca</th>
-                    <th>Sjedalo</th>
-                    <th>Cijena (KM)</th>
-                </tr>
-                <tr th:each="ticket : ${tickets}">
-                    <td th:text="${ticket.customerName}"></td>
-                    <td th:text="${ticket.seatNumber}"></td>
-                    <td th:text="${ticket.price}"></td>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>Ime kupca</th>
+                        <th>Sjedalo</th>
+                        <th>Cijena (KM)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="ticket : ${tickets}">
+                        <td th:text="${ticket.customerName}"></td>
+                        <td th:text="${ticket.seatNumber}"></td>
+                        <td th:text="${ticket.price}"></td>
+                    </tr>
+                </tbody>
             </table>
 
-            <div style="text-align:center; margin-top:15px;">
+            <h3>Kupi kartu za film</h3>
+            <form th:action="@{'/movie/buy/' + ${movie.id}}" method="post" class="buy-ticket-form">
+                <label for="customerName">Ime:</label>
+                <input type="text" id="customerName" name="customerName" placeholder="Unesi ime" required>
+
+                <label for="price">Cijena (KM):</label>
+                <input type="text" id="price" name="price" th:value="${movie.price}" readonly>
+
+                <input type="hidden" name="seatNumber" th:value="${seatNumber}">
+
+                <button type="submit">Kupi 🎫</button>
+            </form>
+
+            <div class="back-btn">
                 <a href="/movies" class="btn">⬅ Nazad na filmove</a>
             </div>
         </div>
-        <div>
-
-            <h3>Kupi kartu 🎫</h3>
-            <form th:action="@{'/movie/buy/' + ${movie.id}}" method="post" class="buy-ticket-form">
-                <label>Ime kupca:</label>
-                <input type="text" name="customerName" required>
-
-                <label>Sjedalo:</label>
-                <input type="text" name="seatNumber" required>
-
-                <button type="submit" class="btn">Kupi kartu za <span th:text="${movie.price}"> </span>KM</button>
-            </form>
-
-        </div>
-
-
-
     </div>
-</div>
+</main>
 
 <footer>
-    <hr>
-    <p style="text-align:center;">© 2025 Kino Sistem</p>
+    <p>© 2025 Kino Sistem</p>
 </footer>
 
 </body>

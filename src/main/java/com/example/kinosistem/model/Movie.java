@@ -1,10 +1,17 @@
 package com.example.kinosistem.model;
-import com.example.kinosistem.model.Ticket;
+
+import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "movies")
 public class Movie {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String title;
     private String genre;
     private int duration; // minute
@@ -12,7 +19,10 @@ public class Movie {
     private double price;
     private String imageUrl;
 
-    // Relacija 1:N -> jedan film ima više karata
+    @ManyToMany(mappedBy = "movies")
+    private List<Director> directors = new ArrayList<>();
+
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Ticket> tickets = new ArrayList<>();
 
     public Movie() {}
@@ -27,9 +37,12 @@ public class Movie {
         this.imageUrl = imageUrl;
     }
 
-    public double getPrice() {
-        return price;
+    public void addDirector(Director director) {
+        if (!this.directors.contains(director)) {
+            this.directors.add(director);
+        }
     }
+
     // Getteri i setteri
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
@@ -46,9 +59,15 @@ public class Movie {
     public double getRating() { return rating; }
     public void setRating(double rating) { this.rating = rating; }
 
-    public List<Ticket> getTickets() { return tickets; }
-    public void setTickets(List<Ticket> tickets) { this.tickets = tickets; }
+    public double getPrice() { return price; }
+    public void setPrice(double price) { this.price = price; }
 
     public String getImageUrl() { return imageUrl; }
     public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
+
+    public List<Director> getDirectors() { return directors; }
+    public void setDirectors(List<Director> directors) { this.directors = directors; }
+
+    public List<Ticket> getTickets() { return tickets; }
+    public void setTickets(List<Ticket> tickets) { this.tickets = tickets; }
 }

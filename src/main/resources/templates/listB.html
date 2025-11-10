@@ -8,44 +8,47 @@
 <body>
 
 <header>
-    <h1 style="text-align:center;">KINO SISTEM 🎥</h1>
-    <nav style="text-align:center; margin-bottom:10px;">
-        <a href="/movies">🎬 Filmovi</a> |
-        <a href="/tickets">🎫 Karte</a>
-    </nav>
-    <hr>
+    <div class="navbar">
+        <div class="logo">
+            <a href="/movies"><img src="/css/images/logo.png" alt="Kino Sistem" /></a>
+        </div>
+        <nav>
+            <a href="/movies">🎬 Filmovi</a>
+            <a href="/tickets">🎫 Karte</a>
+            <a href="/directors">➕ Dodaj Režisera</a>
+        </nav>
+    </div>
 </header>
 
-<div class="details" style="display:flex; justify-content:center;">
-    <div class="info" style="max-width:700px; width:100%;">
-        <h2 style="text-align:center;">Lista svih prodatih karata</h2>
-
-        <table style="margin:auto;">
-            <tr>
-                <th>Film</th>
-                <th>Ime kupca</th>
-                <th>Sjedalo</th>
-                <th>Cijena (KM)</th>
-            </tr>
-            <!-- sortiranje po nazivu filma -->
-            <tr th:each="ticket : ${tickets}">
-                <td th:text="${ticket.movie.title}"></td>
-                <td th:text="${ticket.customerName}"></td>
-                <td th:text="${ticket.seatNumber}"></td>
-                <td th:text="${ticket.price}"></td>
-            </tr>
-
+<main>
+    <h2>🎫 Lista svih prodatih karata</h2>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Film</th>
+                    <th>Ime kupca</th>
+                    <th>Sjedalo</th>
+                    <th>Cijena (KM)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="ticket : ${tickets}">
+                    <td th:text="${ticket.movie.title}"></td>
+                    <td th:text="${ticket.customerName}"></td>
+                    <td th:text="${ticket.seatNumber}"></td>
+                    <td th:text="${ticket.price}"></td>
+                </tr>
+            </tbody>
         </table>
-
-        <div style="text-align:center; margin-top:15px;">
+        <div class="back-btn">
             <a href="/movies" class="btn">⬅ Nazad na filmove</a>
         </div>
     </div>
-</div>
+</main>
 
 <footer>
-    <hr>
-    <p style="text-align:center;">© 2025 Kino Sistem</p>
+    <p>© 2025 Kino Sistem</p>
 </footer>
 
 </body>

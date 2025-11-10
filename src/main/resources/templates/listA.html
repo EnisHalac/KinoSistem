@@ -8,30 +8,38 @@
 <body>
 
 <header>
-    <h1>KINO SISTEM 🎥</h1>
-    <nav>
-        <a href="/movies">🎬 Filmovi</a> |
-        <a href="/tickets">🎫 Karte</a>
-    </nav>
-    <hr>
+    <div class="navbar">
+        <div class="logo">
+            <a href="/movies"><img src="/css/images/logo.png" alt="Kino Sistem" /></a>
+        </div>
+        <nav>
+            <a href="/movies">🎬 Filmovi</a>
+            <a href="/tickets">🎫 Karte</a>
+            <a href="/directors">➕ Dodaj Režisera</a>
+        </nav>
+    </div>
 </header>
 
-<h2>🎞️ Dostupni filmovi</h2>
-
-<div class="movie-grid">
-    <div class="movie-card" th:each="movie : ${movies}">
-        <img th:src="@{${movie.imageUrl}}" alt="poster">
-        <h3 th:text="${movie.title}"></h3>
-        <p><b>Žanr:</b> <span th:text="${movie.genre}"></span></p>
-        <p><b>Trajanje:</b> <span th:text="${movie.duration}"></span> min</p>
-        <p><b>Ocjena:</b> <span th:text="${movie.rating}"></span></p>
-        <a class="btn" th:href="@{'/movie/action/' + ${movie.id}}">Detalji 🎟️</a>
+<main>
+    <h2 class="page-title">🎞️ Dostupni filmovi</h2>
+    <div class="movie-grid">
+        <div class="movie-card" th:each="movie : ${movies}">
+            <div class="poster">
+                <img th:src="@{${movie.imageUrl}}" alt="poster">
+            </div>
+            <div class="movie-info">
+                <h3 th:text="${movie.title}"></h3>
+                <p><b>Žanr:</b> <span th:text="${movie.genre}"></span></p>
+                <p><b>Trajanje:</b> <span th:text="${movie.duration}"></span> min</p>
+                <p><b>Ocjena:</b> <span th:text="${movie.rating}"></span></p>
+                <a class="btn" th:href="@{'/movie/action/' + ${movie.id}}">Pogledaj Više ➡</a>
+            </div>
+        </div>
     </div>
-</div>
+</main>
 
 <footer>
-    <hr>
-    <p style="text-align:center;">© 2025 Kino Sistem</p>
+    <p>© 2025 Kino Sistem</p>
 </footer>
 
 </body>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dodaj Režisera</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<header>
+    <div class="navbar">
+        <div class="logo">
+            <a href="/movies"><img src="/css/images/logo.png" alt="Kino Sistem" /></a>
+        </div>
+        <nav>
+            <a href="/movies">🎬 Filmovi</a>
+            <a href="/tickets">🎫 Karte</a>
+            <a href="/directors">➕ Dodaj Režisera</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <h2>🎞️ Dodaj novog režisera</h2>
+
+    <form th:action="@{/directors/add}" th:object="${director}" method="post" class="add-director-form">
+        <label for="name">Ime režisera:</label>
+        <input type="text" th:field="*{name}" placeholder="Unesite ime režisera" required>
+
+        <label for="movie">Poveži s filmom (opcionalno):</label>
+        <select name="movieId">
+            <option value="" selected>-- Ne povezuj sada --</option>
+            <option th:each="movie : ${movies}" th:value="${movie.id}" th:text="${movie.title}">Film</option>
+        </select>
+
+        <button type="submit">Dodaj režisera</button>
+    </form>
+
+    <h3>Postojeći režiseri:</h3>
+    <ul>
+        <li th:each="d : ${directors}" th:text="${d.name}"></li>
+    </ul>
+</main>
+
+<footer>
+    <p>© 2025 Kino Sistem</p>
+</footer>
+
+</body>
+</html>
