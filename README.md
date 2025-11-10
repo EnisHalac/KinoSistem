@@ -38,9 +38,9 @@ Omogućava pregled filmova, listu svih prodatih karata, te kupovinu karata direk
 
 ## Screenshot aplikacije
 
-![Screenshot Movie List](https://github.com/EnisHalac/KinoSistem/blob/main/src/Screenshot_15.PNG)  
-![Screenshot Tickets](https://github.com/EnisHalac/KinoSistem/blob/main/src/Screenshot_17.PNG)  
-![Screenshot Movie Details](https://github.com/EnisHalac/KinoSistem/blob/main/src/Screenshot_16.PNG)  
+![Screenshot Movie List](https://github.com/EnisHalac/KinoSistem/blob/main/src/Screenshot_15.png)  
+![Screenshot Tickets](https://github.com/EnisHalac/KinoSistem/blob/main/src/Screenshot_17.png)  
+![Screenshot Movie Details](https://github.com/EnisHalac/KinoSistem/blob/main/src/Screenshot_16.png)  
 
 ---
 
