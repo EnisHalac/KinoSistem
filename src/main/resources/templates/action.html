@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'Film: ' + ${movie.title}">Detalji o filmu</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<header>
+    <h1>KINO SISTEM 🎥</h1>
+    <nav>
+        <a href="/movies">🎬 Filmovi</a> |
+        <a href="/tickets">🎫 Karte</a>
+        <a href="/directors">➕ Dodaj Režisera</a>
+    </nav>
+    <hr>
+</header>
+
+<div class="details">
+    <div class="movie-detail-grid">
+        <div class="poster">
+            <img th:src="@{${movie.imageUrl}}" th:alt="${movie.title}" />
+        </div>
+        <div class="info">
+            <h2 th:text="${movie.title}"></h2>
+            <p><b>Žanr:</b> <span th:text="${movie.genre}"></span></p>
+            <p><b>Trajanje:</b> <span th:text="${movie.duration}"></span> min</p>
+            <p><b>Ocjena:</b> <span th:text="${movie.rating}"></span></p>
+
+            <h3>Režiseri:</h3>
+            <ul>
+                <li th:each="director : ${movie.directors}" th:text="${director.name}"></li>
+            </ul>
+
+            <h3>Karte za ovaj film:</h3>
+            <table>
+                <tr>
+                    <th>Ime kupca</th>
+                    <th>Sjedalo</th>
+                    <th>Cijena (KM)</th>
+                </tr>
+                <tr th:each="ticket : ${tickets}">
+                    <td th:text="${ticket.customerName}"></td>
+                    <td th:text="${ticket.seatNumber}"></td>
+                    <td th:text="${ticket.price}"></td>
+                </tr>
+            </table>
+
+            <div style="text-align:center; margin-top:15px;">
+                <a href="/movies" class="btn">⬅ Nazad na filmove</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <hr>
+    <p style="text-align:center;">© 2025 Kino Sistem</p>
+</footer>
+
+</body>
+</html>
